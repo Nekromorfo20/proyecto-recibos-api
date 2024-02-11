@@ -6,10 +6,11 @@ const UsuarioModel = sequelize.define('usuario', {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     nombre: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false
     },
     contrasena: {

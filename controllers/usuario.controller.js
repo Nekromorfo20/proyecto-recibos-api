@@ -7,6 +7,7 @@ class UsuarioController {
     async usuarioInicioSesion(req, res) {
         try {
             const { nombre, contrasena } = req.body
+            const ENV = process.env
             let respuesta = {}
             let token = {}
     
@@ -24,14 +25,14 @@ class UsuarioController {
                 }
             }
 
-            token = jwt.sign(payload, process.env.API_TOKEN_SECRET, {
-                expiresIn: Number(process.env.API_TOKEN_EXPIRATION), // 1 hora
+            token = jwt.sign(payload, ENV.API_TOKEN_SECRET, {
+                expiresIn: Number(ENV.API_TOKEN_EXPIRATION), // 1 hora
+                algorithm: `${ENV.API_TOKEN_ALGORITHM}`
             })
 
             respuesta = {
                 id: usuario.id,
                 nombre: usuario.nombre,
-                fechaCreacion: usuario.fechaCreacion,
                 token: token
             }
             return res.status(200).json({ respuesta })
