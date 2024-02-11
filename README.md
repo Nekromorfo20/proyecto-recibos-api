@@ -24,10 +24,8 @@ Viernes 09 de Febrero del 2024
 3. Una vez instaladas las dependencias ejecute el comando `npm start` para iniciar el proyecto.
 
 ## Usuarios de prueba para el proyecto:
-
-Usuario: alan
-Contraseña: admin123
+Usuario - alan
+Contraseña - admin123
 ---
-
-Usuario: juan
-Contraseña: admin123
+Usuario - juan
+Contraseña - admin123
