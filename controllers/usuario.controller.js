@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const { UsuarioModel } = require('../models')
 
 class UsuarioController {
@@ -7,6 +8,7 @@ class UsuarioController {
         try {
             const { nombre, contrasena } = req.body
             let respuesta = {}
+            let token = {}
     
             if (!nombre || !contrasena) return res.status(400).json({ message: '¡Nombre de usuario o contraseña incorrecto!' })
     
@@ -15,10 +17,22 @@ class UsuarioController {
     
             if (contrasena !== usuario.contrasena) return res.status(400).json({ message: '¡Nombre de usuario o contraseña incorrecto!' })
     
+            const payload = {
+                usuario: {
+                    id: usuario.id,
+                    nombre: usuario.nombre
+                }
+            }
+
+            token = jwt.sign(payload, process.env.API_TOKEN_SECRET, {
+                expiresIn: Number(process.env.API_TOKEN_EXPIRATION), // 1 hora
+            })
+
             respuesta = {
                 id: usuario.id,
                 nombre: usuario.nombre,
-                fechaCreacion: usuario.fechaCreacion
+                fechaCreacion: usuario.fechaCreacion,
+                token: token
             }
             return res.status(200).json({ respuesta })
         } catch (error) {
