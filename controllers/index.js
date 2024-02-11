@@ -1,19 +1,7 @@
-const { 
-    obtenerRecibo,
-    obtenerTodosLosRecibos,
-    crearRecibo,
-    editarRecibo,
-    eliminarRecibo
-} = require('./recibo.controller')
-const {
-    usuarioInicioSesion
-} = require('./usuario.controller')
+const ReciboController = require('./recibo.controller')
+const UsuarioController = require('./usuario.controller')
 
 module.exports = {
-    obtenerRecibo,
-    obtenerTodosLosRecibos,
-    crearRecibo,
-    editarRecibo,
-    eliminarRecibo,
-    usuarioInicioSesion
+    ReciboController,
+    UsuarioController
 }
