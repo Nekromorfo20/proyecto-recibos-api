@@ -51,8 +51,3 @@ UsuarioReciboModel.belongsTo(ReciboModel, { foreignKey: "reciboId" })
 module.exports = {
     UsuarioReciboModel
 }
-
-// UsuarioReciboModel.belongsTo(UsuarioModel, { foreignKey: 'usuarioId' })
-// UsuarioReciboModel.belongsTo(ReciboModel, { foreignKey: 'reciboId' })
-
-// export { UsuarioReciboModel as default }

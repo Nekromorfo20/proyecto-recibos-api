@@ -34,5 +34,3 @@ const UsuarioModel = sequelize.define('usuario', {
 module.exports = {
     UsuarioModel
 }
-
-// export { UsuarioModel as default }
