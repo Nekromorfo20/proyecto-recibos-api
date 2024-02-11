@@ -3,6 +3,7 @@
 
 ## Descrición:
 Evaluación técnica para Axosnet, proyecto administración de recibos.
+
 Este es un proyecto API que apoya a un usuario con la administración de sus recibos (utilizando un CRUD).
 
 ## Desarrollado por:
@@ -23,9 +24,9 @@ Viernes 09 de Febrero del 2024
 
 3. Una vez instaladas las dependencias ejecute el comando `npm start` para iniciar el proyecto.
 
-## Usuarios de prueba para el proyecto:
+## Usuarios de prueba:
 Usuario - alan
 Contraseña - admin123
----
+
 Usuario - juan
 Contraseña - admin123
