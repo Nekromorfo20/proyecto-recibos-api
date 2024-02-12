@@ -46,5 +46,3 @@ const ReciboModel = sequelize.define('recibo', {
 module.exports = {
     ReciboModel
 }
-
-// export { ReciboModel as default }
