@@ -1,9 +1,16 @@
 const jwt = require('jsonwebtoken')
 const { UsuarioModel } = require('../models')
+const { responseUtil, validarContrasena  } = require('../utils')
 
 class UsuarioController {
 
-    // Método para el inicio de sesión de un usuario y comprobar que existe
+    /**
+    * @author Alan Aguilar
+    * @description Método para el inicio de sesión de un usuario y comprobar que existe
+    * @date 12-02-2024
+    * @return {Object}
+    * @memberof UsuarioController
+    */
     async usuarioInicioSesion(req, res) {
         try {
             const { nombre, contrasena } = req.body
@@ -11,13 +18,14 @@ class UsuarioController {
             let respuesta = {}
             let token = {}
     
-            if (!nombre || !contrasena) return res.status(400).json({ message: '¡Nombre de usuario o contraseña incorrecto!' })
+            if (!nombre || !contrasena) return res.status(400).json(responseUtil(400, '¡Nombre de usuario o contraseña incorrecto!', {}))
     
             const usuario = await UsuarioModel.findOne({ where: { nombre: nombre } })
-            if (!usuario) return res.status(400).json({ message: '¡Nombre de usuario o contraseña incorrecto!' })
+            if (!usuario) return res.status(400).json(responseUtil(400, '¡Nombre de usuario o contraseña incorrecto!', {}))
     
-            if (contrasena !== usuario.contrasena) return res.status(400).json({ message: '¡Nombre de usuario o contraseña incorrecto!' })
-    
+            const contrasenaValida = await validarContrasena(contrasena, usuario.contrasena)
+            if (contrasenaValida !== true) return res.status(400).json(responseUtil(400, '¡Nombre de usuario o contraseña incorrecto!', {}))
+
             const payload = {
                 usuario: {
                     id: usuario.id,
@@ -31,14 +39,13 @@ class UsuarioController {
             })
 
             respuesta = {
-                id: usuario.id,
                 nombre: usuario.nombre,
                 token: token
             }
-            return res.status(200).json({ respuesta })
+            return res.status(200).json(responseUtil(200, '¡OK!', respuesta))
         } catch (error) {
             console.log( error)
-            return res.status(500).json({ message: '¡Error de servidor!' })
+            return res.status(400).json(responseUtil(500, '¡Error de servidor!', {}))
         }
     }
 }
